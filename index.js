@@ -141,11 +141,11 @@ function parseAttrs(str) {
 			attrs.class = value;
 		} else if(property === 'style') {
 			attrs.style = parseStyle(value);
-		} else if (startsWithDataDash(property)) {
+		} /*else if (startsWithDataDash(property)) {
 			attrs.dataset = attrs.dataset || {};
 			var key = camelCase(property.slice(5));
 			attrs.dataset[key] = castValue(value);
-		} else {
+		} */else {
 			attrs[camelCase(property)] = castValue(value);
 		}
 		return attrs;
@@ -223,9 +223,12 @@ function parseStyle(str) {
 }
 
 function camelCase(str) {
+  return str;
+  /*
 	return str.split('-').reduce(function(str, word) {
 		return str + word.charAt(0).toUpperCase() + word.slice(1);
 	});
+  */
 }
 
 function castValue(str) {

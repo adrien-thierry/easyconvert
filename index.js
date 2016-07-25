@@ -1,6 +1,8 @@
 
 (function() {
 
+var INDEX = 0;
+
 var root = this;
 
 var tagStart = '<';
@@ -28,34 +30,31 @@ function Node(kind, data) {
 }
 
 function parseUntil(str, stack) {
-	var nodes = [];
+	var nodes = {};
 
 	while(str.length) {
 		var nextTag = str.indexOf(tagStart);
 		if(!~nextTag) {
 			// only text left
-			nodes.push(Node('Text', {content: str}));
+			nodes.innerHTML = str;
 			str = "";
 		} else if(nextTag) {
 			// text before tag
-			nodes.push(Node('Text', {
-				content: str.slice(0, nextTag)
-			}));
+			nodes.innerHTML = str.slice(0, nextTag);
 			str = str.slice(nextTag);
 		} else {
 			if(startsWithCommentStart(str)) {
 				// comment
 				var end = str.indexOf(commentEnd);
-				nodes.push(Node('Comment', {
-					content: str.slice(commentStart.length, end)
-				}));
+				nodes.comment = str.slice(commentStart.length, end);
 				str = str.slice(end + commentEnd.length);
 			} else if(str.charAt(nextTag + 1) !== '/') {
 				// open tag
 				var results = parseTag(str, stack);
 				if(results.tag) {
-					nodes.push(Node('Element', results.tag));
+					nodes[results.tag.tag + "_" + INDEX] = results.tag;
 					str = results.str;
+          INDEX++;
 				}
 				if(results.stack.length !== stack.length) {
 					stack = results.stack;
@@ -112,6 +111,13 @@ function parseTag(str, stack) {
 			str = str.slice(idx);
 		} else if(!~voidTags.indexOf(lowTagName)) {
 			var results = parseUntil(str, stack.concat(tagName));
+
+      if(results.nodes.innerHTML)
+      {
+        tag.innerHTML = results.nodes.innerHTML;
+        delete results.nodes.innerHTML;
+      }
+
 			tag.child = results.nodes;
 			str = results.str;
 			stack = results.stack;
@@ -132,7 +138,7 @@ function parseAttrs(str) {
 		var property = kv[0];
 		var value = kv[1];
 		if(property === 'class') {
-			attrs.className = value.split(' ');
+			attrs.class = value;
 		} else if(property === 'style') {
 			attrs.style = parseStyle(value);
 		} else if (startsWithDataDash(property)) {

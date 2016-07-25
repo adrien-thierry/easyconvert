@@ -1,5 +1,7 @@
 # Himalaya
 
+HIMALAYA MODIFIED VERSION FOR EASYPLATE
+
 Himalaya is a pure JavaScript HTML parser that converts HTML into JSON, which can then be further manipulated by other modules.
 
 ```bash
@@ -73,8 +75,8 @@ Himalaya has a specification for its output. Essentially, everything is a node a
 
 ## Features
 
-### Synchronous 
-HTML is turned into JSON, that's it. Himalaya is completely synchronous and does not require any complicated callbacks. 
+### Synchronous
+HTML is turned into JSON, that's it. Himalaya is completely synchronous and does not require any complicated callbacks.
 
 ### Parses Attributes
 Himalaya does a couple things when processing attributes:
@@ -121,7 +123,7 @@ While I was testing the parser, I threw a download of my Twitter homepage in and
 
 ## Nerd Stuff
 
-My first implementation used look-ahead, found the matching closing tag, and then recursively parsed the inners until a tree was built. That was problematic. This implementation uses no look-ahead and instead uses a stack to keep track of nesting as the source string is cut away. When an end tag is found the stack it cut to match and then parsing picks up again at the higher level. 
+My first implementation used look-ahead, found the matching closing tag, and then recursively parsed the inners until a tree was built. That was problematic. This implementation uses no look-ahead and instead uses a stack to keep track of nesting as the source string is cut away. When an end tag is found the stack it cut to match and then parsing picks up again at the higher level.
 
 This parser was implemented without using any regular expressions. Since I wanted this to double as a learning resource, I wanted the code to be readable sans regexes.
 

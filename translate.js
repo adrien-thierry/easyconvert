@@ -3,8 +3,8 @@ var paul = require('paul');
 
 // c/p'd from ../index.js
 var voidTags = [
-	"!doctype", "area", "base", "br", "col", "command", 
-	"embed", "hr", "img", "input", "keygen", "link", 
+	"!doctype", "area", "base", "br", "col", "command",
+	"embed", "hr", "img", "input", "keygen", "link",
 	"meta", "param", "source", "track", "wbr"];
 
 function serializeAttr(attr, value, isXml) {
@@ -50,14 +50,14 @@ var toHTML = function(tree, options) {
 					}
 				} else if(attr === 'style') {
 					tag += ' ' + serializeAttr(attr, inlineStyle(val));
-				} else if(attr === 'className'){
+				} else if(attr === 'class'){
 					tag += ' ' + serializeAttr('class', val.join(' '));
 				} else {
 					tag += ' ' + serializeAttr(dasherize(attr), val, dtype === 'xml');
 				}
 			}
 		}
-		
+
 		var lowTagName = node.tagName.toLowerCase();
 		if(dtype !== 'xml' && ~voidTags.indexOf(lowTagName)) {
 			if(!dtype && lowTagName === '!doctype') {
@@ -128,7 +128,7 @@ var toJade = function(tree, options) {
 			}).join(', ');
 			tag += ')';
 		}
-		var lowTagName = node.tagName.toLowerCase(); 
+		var lowTagName = node.tagName.toLowerCase();
 		if(~voidTags.indexOf(lowTagName)) {
 			if(lowTagName === '!doctype') {
 				if(!dtype) dtype = doctypeShortcut(tag);
@@ -146,7 +146,7 @@ var toJade = function(tree, options) {
 					? tag + '.' + newline + multi(text, depth + 1)
 					: tag + ' ' + text;
 			}
-			return tag + newline + 
+			return tag + newline +
 				walk(node.children.filter(isWhitespaceNode), depth + 1).join(newline);
 		}
 	}, 0);

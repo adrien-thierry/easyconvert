@@ -1,6 +1,6 @@
 {
   "name": "easyconvert",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "HTML to JSON parser for easyplate",
   "main": "index.js",
   "bin": {

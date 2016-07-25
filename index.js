@@ -94,8 +94,8 @@ function parseTag(str, stack) {
 
 	var attrs = parseAttrs(str.slice(tagNameEnd));
 	var tag = {
-		tagName: tagName,
-		attributes: attrs.attributes
+		tag: tagName,
+		attribute: attrs.attributes
 	};
 	str = attrs.str;
 
@@ -112,7 +112,7 @@ function parseTag(str, stack) {
 			str = str.slice(idx);
 		} else if(!~voidTags.indexOf(lowTagName)) {
 			var results = parseUntil(str, stack.concat(tagName));
-			tag.children = results.nodes;
+			tag.child = results.nodes;
 			str = results.str;
 			stack = results.stack;
 		}

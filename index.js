@@ -258,7 +258,7 @@ function startsWithDataDash(s) {
 		s.charAt(4) === '-');
 }
 
-var himalaya = {
+var easyconvert = {
   parse: parse,
   parseTag: parseTag,
 	parseUntil: parseUntil,
@@ -268,11 +268,11 @@ var himalaya = {
 
 if(typeof exports !== 'undefined') {
   if(typeof module !== 'undefined' && module.exports) {
-    exports = module.exports = himalaya;
+    exports = module.exports = easyconvert;
   }
-  exports.himalaya = himalaya;
+  exports.easyconvert = easyconvert;
 } else {
-  root.himalaya = himalaya;
+  root.easyconvert = easyconvert;
 }
 
 }).call(this);

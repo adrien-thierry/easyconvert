@@ -1,23 +1,23 @@
 #!/usr/bin/env node
 
 function help() {
-/*	
-    Usage: himalaya [file] [dest]
-    
+/*
+    Usage: easyconvert [file] [dest]
+
     (no args):      pipe in HTML, pipe out JSON
     file:           HTML file location
     dest:           JSON file destination
 
     -h, --help:     displays this
-    -v, --version:  prints himalaya's version
+    -v, --version:  prints easyconvert's version
 
-    if dest is not provided, himalaya prints to stdout
+    if dest is not provided, easyconvert prints to stdout
 */
 }
 
 var fs = require('fs');
 var path = require('path');
-var himalaya = require('..');
+var easyconvert = require('..');
 
 var args = process.argv.slice(2);
 var root = process.cwd();
@@ -30,7 +30,7 @@ if(!args.length) {
 	process.stdin.resume();
 	process.stdin.setEncoding('utf8');
 	process.stdin.on('data', function(text) {
-		var data = himalaya.parse(text);
+		var data = easyconvert.parse(text);
 		var json = toJSON(data);
 		process.stdout.write(json);
 	});
@@ -54,12 +54,12 @@ if(flag === '-v' || flag === '--version') {
 }
 
 var src  = path.join(root, args[0]);
-var dest = args[1] 
+var dest = args[1]
 	? path.join(root, args[1])
 	: null;
 
 var text = fs.readFileSync(src);
-var data = himalaya.parse(text);
+var data = easyconvert.parse(text);
 var cout = toJSON(data);
 
 if(dest) {

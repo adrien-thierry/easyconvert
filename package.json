@@ -1,35 +1,36 @@
 {
-  "name": "himalaya",
-  "version": "0.2.0",
-  "description": "HTML to JSON parser",
+  "name": "easyconvert",
+  "version": "0.0.1",
+  "description": "HTML to JSON parser for easyplate",
   "main": "index.js",
   "bin": {
-    "himalaya": "./bin/himalaya.js"
+    "easyconvert": "./bin/easyconvert.js"
   },
   "scripts": {
     "test": "mocha",
-    "himalaya": "./bin/himalaya.js"
+    "easyconvert": "./bin/easyconvert.js"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/andrejewski/himalaya.git"
+    "url": "https://github.com/adrien-thierry/easyconvert.git"
   },
   "keywords": [
     "html",
     "parser",
     "ast",
-    "json"
+    "json",
+    "easyplate"
   ],
-  "author": "Chris Andrejewski <christopher.andrejewski@gmail.com>",
+  "author": "Adrien THIERRY <adrien.thierryfr@gmail.com>",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/andrejewski/himalaya/issues"
+    "url": "https://github.com/adrien-thierry/easyconvert/issues"
   },
-  "homepage": "https://github.com/andrejewski/himalaya",
+  "homepage": "https://github.com/adrien-thierry/easyconvert",
   "devDependencies": {
     "mocha": "^2.2.5"
   },
   "dependencies": {
-    "paul": "0.0.3"
+
   }
 }
